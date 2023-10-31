@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="sidebar" class='active' th:fragment="sidebar">
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+            <img th:src="@{/images/logo1.svg}" alt="" srcset="">
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+
+
+                <li class='sidebar-title'>Main Menu</li>
+
+
+
+                <li class="sidebar-item active ">
+
+                    <a th:href="@{/home}" class='sidebar-link'>
+                        <i data-feather="home" width="20"></i>
+                        <span>Dashboard</span>
+                    </a>
+
+
+                </li>
+
+
+
+                <li class="sidebar-item  has-sub">
+
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="triangle" width="20"></i>
+                        <span>Components</span>
+                    </a>
+
+
+                    <ul class="submenu ">
+
+                        <li>
+                            <a th:href="@{/patient}" >Patients</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/rdv}" >Appointments</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/cons}" >Consultations</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/control}" >Controls</a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+
+                <li class="sidebar-item  has-sub">
+
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="briefcase" width="20"></i>
+                        <span>Extra Components</span>
+                    </a>
+
+
+                    <ul class="submenu ">
+
+                        <li>
+                            <a th:href="@{/amb}" >Ambulance</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/medc}" >Medicine</a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+
+                <li class='sidebar-title'>Forms &amp; Tables</li>
+
+
+
+                <li class="sidebar-item  has-sub">
+
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="file-text" width="20"></i>
+                        <span>Form Elements</span>
+                    </a>
+
+
+                    <ul class="submenu ">
+
+                        <li>
+                            <a th:href="@{/savePatientPage}">Add patients</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/saveRDVPage}">Add appointments</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/saveConsPage}">Add Consultations</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{/saveControlPage}">Add Controls</a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+
+                <li class="sidebar-item  ">
+
+                    <a href="form-layout.html" class='sidebar-link'>
+                        <i data-feather="layout" width="20"></i>
+                        <span>Form Layout</span>
+                    </a>
+
+
+                </li>
+
+
+
+                <li class="sidebar-item  ">
+
+                    <a th:href="@{/amb}" class='sidebar-link'>
+                        <i data-feather="alert-circle" width="20"></i>
+                        <span>Urgency</span>
+                    </a>
+
+
+                </li>
+
+
+
+                <li class="sidebar-item  ">
+
+                    <a href="table.html" class='sidebar-link'>
+                        <i data-feather="grid" width="20"></i>
+                        <span>Table</span>
+                    </a>
+
+
+                </li>
+
+
+
+
+
+
+
+
+                <li class='sidebar-title'>Pages</li>
+
+
+
+                <li class="sidebar-item  has-sub">
+
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="user" width="20"></i>
+                        <span>Authentication</span>
+                    </a>
+
+
+                    <ul class="submenu ">
+
+                        <li>
+                            <a href="auth-login.html">Login</a>
+                        </li>
+
+                        <li>
+                            <a href="auth-register.html">Register</a>
+                        </li>
+
+                        <li>
+                            <a href="auth-forgot-password.html">Forgot Password</a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+
+                <li class="sidebar-item  has-sub">
+
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="alert-circle" width="20"></i>
+                        <span>Errors</span>
+                    </a>
+
+
+                    <ul class="submenu ">
+
+                        <li>
+                            <a href="error-403.html">403</a>
+                        </li>
+
+                        <li>
+                            <a href="error-404.html">404</a>
+                        </li>
+
+                        <li>
+                            <a href="error-500.html">500</a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+            </ul>
+        </div>
+        <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+    </div>
+</div>
+</body>
+</html>

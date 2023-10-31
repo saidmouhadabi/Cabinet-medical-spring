@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}"
+      layout:decorator="layouts/dashboard">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="main-content container-fluid" layout:fragment="content">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Controls</h3>
+                <p class="text-subtitle text-muted"></p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/home}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Controls</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Controls Datatable
+            </div>
+            <div class="card-body">
+                <table class='table table-striped' id="table1">
+                    <thead>
+                    <tr>
+
+                        <th scope="col">Description</th>
+                        <th scope="col">Result</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="control: ${controlList}">
+                        <td th:text="${control.description}"></td>
+                        <td th:text="${control.Resultat_Control}"></td>
+
+
+                        <td>
+                            <a th:href="@{/updateControlUpdate/{id}(id=${control.id_control})}" class="btn icon icon-left btn-primary"><i data-feather="edit"></i> Update</a>
+                            <a th:href="@{/deleteControl/{id}(id=${control.id_control})}" class="btn icon icon-left btn-danger"><i data-feather="alert-circle"></i> Delete</a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+		crossorigin="anonymous"></script>
+	<title>Add appointment page</title>
+</head>
+
+<body>
+	<h3 th:text="${msg}" style="color:red; text-align: center;"></h3>
+	<div id="mydiv" data-mini="2023-02-02"></div>
+	
+	<div class="container"><br>
+          <h1 style="color:red">Appointment Register Form</h1>
+		<form class="col-5" th:action="@{/saveRDV}" th:object="${rdv}" method="post">
+
+			
+			
+            <div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">Appointment Type</label>
+				<input type="text" th:field="*{type_rdv}" class="form-control">
+			</div>
+
+			<div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">Appointment Date</label>
+				<!--<input type="date" class="form-control" th:field="*{date_rdv}" th:each="appointment : ${appointments}" th:value="${appointment.date}" th:disabled="${appointment.booked}">-->
+				<input type="date" th:field="*{date_rdv}" id="dd" min="" class="form-control">
+			</div>
+			
+			<div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">Appointment Timespan</label>
+				<input type="text" th:field="*{horaire}" class="form-control">
+			</div>
+			
+            
+			<button type="submit" class="btn btn-success" id="book-btn">Save Appointment</button>
+			<div id="appointment-list"></div>
+		</form>
+
+        <br>
+		<a th:href="@{/rdv}">Go to Appointments</a>
+
+	</div>
+
+</body>
+
+</html>
+<script>
+	// Define an array to hold all the appointments
+	let appointments = [];
+
+	// Function to add an appointment
+	function addAppointment(date, time) {
+		appointments.push({
+			date: date,
+			time: time,
+			booked: true
+		});
+	}
+
+	// Function to display all appointments
+	function displayAppointments() {
+		let appointmentList = document.getElementById("appointment-list");
+
+		// Clear any existing content in the appointment list
+		appointmentList.innerHTML = "";
+
+		// Display all appointments in the appointment list
+		for (let i = 0; i < appointments.length; i++) {
+			let appointment = appointments[i];
+			let date = appointment.date;
+			let time = appointment.time;
+			let listItem = document.createElement("li");
+			listItem.textContent = date + " at " + time;
+			appointmentList.appendChild(listItem);
+
+			// Disable the date input if the appointment is already booked
+			if (appointment.booked) {
+				let dateInput = document.getElementById("date");
+				let dateInputs = dateInput.querySelectorAll("[value='" + date + "']");
+				for (let j = 0; j < dateInputs.length; j++) {
+					dateInputs[j].disabled = true;
+				}
+			}
+		}
+	}
+
+	// Get the book appointment button
+	let bookBtn = document.getElementById("book-btn");
+
+	// When the book appointment button is clicked, add the appointment and display all appointments
+	bookBtn.addEventListener("click", function() {
+		let date = document.getElementById("date").value;
+		let time = document.getElementById("time").value;
+		addAppointment(date, time);
+		displayAppointments();
+	});
+
+
+</script>

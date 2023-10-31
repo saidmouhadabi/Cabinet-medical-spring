@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}"
+      layout:decorator="layouts/dashboard">
+<head>
+  <meta charset="UTF-8">
+  <title>Ambulance</title>
+</head>
+<body>
+<div class="main-content container-fluid" layout:fragment="content">
+  <div class="page-title">
+    <div class="row">
+      <div class="col-12 col-md-6 order-md-1 order-last">
+        <h3>Ambulance</h3>
+        <p class="text-subtitle text-muted"></p>
+      </div>
+      <div class="col-12 col-md-6 order-md-2 order-first">
+        <nav aria-label="breadcrumb" class='breadcrumb-header'>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/home}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ambulance</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <section class="section">
+    <div class="card">
+      <div class="card-header">Ambulance Datatable</div>
+      <div class="card-body">
+        <table class='table table-striped' id="table1">
+          <thead>
+          <tr>
+            <th scope="col">Location</th>
+            <th scope="col">Hospital</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="amb: ${ambList}">
+            <td th:text="${amb.localisation}"></td>
+            <td th:text="${amb.hopital}"></td>
+            <td ><span th:text="${amb.etat}" th:class="${amb.etat == 'active'} ? 'badge bg-success' : 'badge bg-danger'"></span></td>
+            <td>
+              <a th:href="@{/ambCall/{id}(id=${amb.id_amb})}" class="btn btn-success round">Call</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+
+</div>
+
+</body>
+</html>

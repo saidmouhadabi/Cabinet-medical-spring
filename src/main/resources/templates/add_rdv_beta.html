@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Booking</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+        .booked-date {
+            background-color: #ffcccc;
+        }
+    </style>
+</head>
+<!--<form>
+    <div class="form-group">
+        <label for="date">Select a date:</label>
+        <select class="form-control" id="date" name="date">
+            <option th:each="appointment : ${appointments}"
+                    th:value="${appointment.date_rdv}"
+                    th:text="${appointment.date_rdv}"
+                    th:disabled="${appointment.booked}"></option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Book appointment</button>
+</form>-->
+<form>
+    <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" class="form-control" id="date" th:each="appointment : ${appointments}" th:value="${appointment.date_rdv}" th:disabled="${appointment.booked}">
+    </div>
+    <div class="form-group">
+        <label for="time">Time:</label>
+        <select class="form-control" id="time">
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+        </select>
+    </div>
+    <button type="button" class="btn btn-primary" id="book-btn">Book Appointment</button>
+</form>
+<!--<script>
+    // Get the select element
+    var dateSelect = document.getElementById("date");
+
+    // Disable already booked dates
+    for (var i = 0; i < dateSelect.options.length; i++) {
+        if (dateSelect.options[i].disabled) {
+            var bookedDate = new Date(dateSelect.options[i].value);
+            var today = new Date();
+            if (bookedDate < today) {
+                dateSelect.options[i].innerHTML += " - Booked";
+            } else {
+                dateSelect.options[i].innerHTML += " - Not Available";
+            }
+        }
+    }
+</script>-->
+<script>
+    // Define an array to hold all the appointments
+    let appointments = [];
+
+    // Function to add an appointment
+    function addAppointment(date, time) {
+        appointments.push({
+            date: date,
+            time: time,
+            booked: true
+        });
+    }
+
+    // Function to display all appointments
+    function displayAppointments() {
+        let appointmentList = document.getElementById("appointment-list");
+
+        // Clear any existing content in the appointment list
+        appointmentList.innerHTML = "";
+
+        // Display all appointments in the appointment list
+        for (let i = 0; i < appointments.length; i++) {
+            let appointment = appointments[i];
+            let date = appointment.date;
+            let time = appointment.time;
+            let listItem = document.createElement("li");
+            listItem.textContent = date + " at " + time;
+            appointmentList.appendChild(listItem);
+
+            // Disable the date input if the appointment is already booked
+            if (appointment.booked) {
+                let dateInput = document.getElementById("date");
+                let dateInputs = dateInput.querySelectorAll("[value='" + date + "']");
+                for (let j = 0; j < dateInputs.length; j++) {
+                    dateInputs[j].disabled = true;
+                }
+            }
+        }
+    }
+
+    // Get the book appointment button
+    let bookBtn = document.getElementById("book-btn");
+
+    // When the book appointment button is clicked, add the appointment and display all appointments
+    bookBtn.addEventListener("click", function() {
+        let date = document.getElementById("date").value;
+        let time = document.getElementById("time").value;
+        addAppointment(date, time);
+        displayAppointments();
+    });
+
+</script>
+</html>
+

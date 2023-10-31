@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}"
+      layout:decorator="layouts/dashboard">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="main-content container-fluid" layout:fragment="content">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Consultation form</h3>
+                <p class="text-subtitle text-muted">Add consultation</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/home}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Consultation form</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+    </div>
+
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Multiple Column</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <form class="form" th:action="@{/saveCons}" th:object="${cons}" method="post">
+                                <div class="row">
+                                    <input hidden="hidden" th:field="*{id_cons}" />
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="desc">Description</label>
+                                            <input type="text" th:field="*{description}" id="desc" class="form-control" placeholder="Description"
+                                                   name="desc">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="ResConsultation">ResConsultation</label>
+                                            <input type="text" th:field="*{ResConsultation}" id="ResConsultation" class="form-control" name="ResConsultation"
+                                                   placeholder="Diagnosis" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="medicine">Medicine</label>
+                                            <input type="text" th:field="*{medicaments}" id="medicine" class="form-control" placeholder="Medicine" name="medicine" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="medic_desc">diagnostics</label>
+                                            <input type="text" th:field="*{diagnostics}" id="diagnostics" class="form-control" name="diagnostics" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="medic_desc">Medicine description</label>
+                                            <input type="text" th:field="*{medic_desc}" id="medic_desc" class="form-control" name="medic_desc" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="tax">Tax</label>
+                                            <input type="text" th:field="*{montant}" id="tax" class="form-control" name="tax"
+                                                   placeholder="Tax" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <div class='form-check'>
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox5" class='form-check-input' checked>
+                                                <label for="checkbox5">Remember Me</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

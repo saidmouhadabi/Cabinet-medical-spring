@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}"
+      layout:decorator="layouts/dashboard">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="main-content container-fluid" layout:fragment="content">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Patient form</h3>
+                <p class="text-subtitle text-muted">Add patient</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/home}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Patient form</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+    </div>
+
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Multiple Column</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <form class="form" th:action="@{/savePatient}" th:object="${patient}" method="post" enctype="multipart/form-data" >
+                                <div class="row">
+                                    <input hidden="hidden" th:field="*{id_patient}" />
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="full_name">Full Name</label>
+                                            <input type="text" th:field="*{full_name}" id="full_name" class="form-control" placeholder="Full Name"
+                                                   name="full_name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="email-id-column">Email</label>
+                                            <input type="email" th:field="*{email}" id="email-id-column" class="form-control" name="email-id-column"
+                                                   placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="adresse">Address</label>
+                                            <input type="text" th:field="*{adresse}" id="adresse" class="form-control" placeholder="Address" name="adresse" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="birthday">Birthday</label>
+                                            <input type="date" th:field="*{date_naiss}" id="birthday" class="form-control" name="birthday" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="age">Age</label>
+                                            <input type="text" th:field="*{age}" id="age" class="form-control" name="age"
+                                                   placeholder="Age" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="tele">Phone number</label>
+                                            <input type="text" th:field="*{tele}" id="tele" class="form-control" name="tele"
+                                                   placeholder="Phone number" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="insurance">Medical Insurance</label>
+                                            <input type="text" th:field="*{securite_medicale}" id="insurance" class="form-control" placeholder="Insurance" name="insurance">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="cin">Cin</label>
+                                            <input type="text" th:field="*{cin}" id="cin" class="form-control" placeholder="cin" name="cin">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="sexe">Gender</label>
+                                            <input type="text" th:field="*{sexe}" id="sexe" class="form-control" placeholder="Gender" name="sexe" required>
+                                        </div>
+                                    </div>
+                                    <!--<div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="image">Profile picture</label>
+                                            <input type="file" th:field="*{photo}" id="image" class="form-control" placeholder="Picture" name="image">
+                                        </div>
+                                    </div>-->
+                                    <div class="form-group col-12">
+                                        <div class='form-check'>
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="checkbox5" class='form-check-input' checked>
+                                                <label for="checkbox5">Remember Me</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

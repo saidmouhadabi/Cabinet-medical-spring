@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}"
+      layout:decorator="layouts/dashboard">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="main-content container-fluid" layout:fragment="content">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Consultation</h3>
+                <p class="text-subtitle text-muted"></p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/home}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Consultation</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">Consultation Datatable</div>
+            <div class="card-body">
+                <form th:action="@{cons}" method="get">
+                    <div class="mb-5">
+                        <label>Mot cle : </label>
+                        <input type="text" name="cin" th:value="${cin}"/>
+                        <button class="btn btn-primary"></button>
+                    </div>
+                </form>
+                <table class='table table-striped' id="table1">
+                    <thead>
+                    <tr>
+                        <th scope="col">Diagnoses</th>
+                        <th scope="col">Medicine</th>
+                        <th scope="col">Tax</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cons: ${consList}">
+                        <td th:text="${cons.diagnostics}"></td>
+                        <td th:text="${cons.medicaments}"></td>
+                        <td th:text="${cons.montant}"></td>
+                        <td>
+                            <a th:href="@{/updateConsPage2/{id}(id=${cons.id_cons})}" class="btn icon icon-left btn-primary"><i data-feather="edit"></i> Update</a>
+                            <a th:href="@{/deleteCons/{id}(id=${cons.id_cons})}" class="btn icon icon-left btn-danger"><i data-feather="alert-circle"></i> Delete</a>
+                            <a th:href="@{/export-pdf/{id}(id=${cons.id_cons})}" ></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+
+</div>
+</body>
+</html>

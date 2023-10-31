@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}"
+      layout:decorator="layouts/dashboard">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div class="main-content container-fluid" layout:fragment="content">
+    <div class="page-title">
+      <div class="row">
+        <div class="col-12 col-md-6 order-md-1 order-last">
+          <h3>Patients</h3>
+          <p class="text-subtitle text-muted"></p>
+        </div>
+        <div class="col-12 col-md-6 order-md-2 order-first">
+          <nav aria-label="breadcrumb" class='breadcrumb-header'>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a th:href="@{/home}">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Datatable</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="card">
+        <div class="card-header">
+          Patients Datatable
+        </div>
+        <form th:action="@{patient}" method="get">
+          <div class="mb-5">
+            <label>Mot cle : </label>
+            <input type="text" name="cin" th:value="${cin}"/>
+            <button class="btn btn-primary"></button>
+          </div>
+        </form>
+        <div class="card-body">
+          <table class='table table-striped' id="table1">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient: ${patientList}">
+
+              <td th:text="${patient.full_name}"></td>
+              <td th:text="${patient.email}"></td>
+              <td th:text="${patient.tele}"></td>
+              <td th:text="${patient.adresse}"></td>
+
+              <td>
+                <a th:href="@{/updatePatientPage/{id}(id=${patient.id_patient})}" class="btn icon icon-left btn-primary"><i data-feather="edit"></i> Update</a>
+                <a th:href="@{/deletePatient/{id}(id=${patient.id_patient})}" class="btn icon icon-left btn-danger"><i data-feather="alert-circle"></i> Delete</a>
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+
+  </div>
+</body>
+</html>

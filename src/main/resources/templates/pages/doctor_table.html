@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/dashboard}"
+      layout:decorator="layouts/dashboard">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor</title>
+</head>
+<body>
+<div class="main-content container-fluid" layout:fragment="content">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Doctor</h3>
+                <p class="text-subtitle text-muted"></p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/home}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Doctor</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">Doctor Datatable</div>
+            <div class="card-body">
+                <table class="table mb-0">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone number</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="med: ${medcList}">
+                        <td th:text="${med.full_name}"></td>
+                        <td th:text="${med.tele}"></td>
+                        <td ><span th:text="${med.etat}" th:class="${med.etat == 'active'} ? 'badge bg-success' : 'badge bg-danger'"></span></td>
+                        <td>
+                            <a th:href="@{/medcCall/{id}(id=${med.id_medecin})}" class="btn btn-success round">Call</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+
+</div>
+
+</body>
+</html>
